@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+	<head>
+		<style type="text/css">
+			button{
+				background-color: blue;
+				padding: 50px;
+				border-radius: 10px;
+				font-size: 50px;
+				box-shadow: 0px 20px gray;
+				margin: 50px;
+			}
+			button:hover{
+				opacity: 0.8;
+				cursor: pointer;
+			}
+			button:active{
+				box-shadow: none;
+				position: relative;
+				top: 20px;
+			}
+			p{
+				font-size: 80px;
+			}
+			h3{
+				color: red;
+				visibility: hidden;
+				margin-left: 800px;
+			}
+			#oneclick{
+				display: inline-block;
+			}
+			#hituyou{
+				display: inline-block;
+				margin-left: 200px;
+			}
+			body{
+				background-color: black;
+			}
+		</style>
+	</head>
+		<body text="white">
+			<p id="score">お金:0</p>
+			<h1 id="oneclick">1クリックごとに増えるお金の量:1</h1>
+			<h1 id="hituyou">投資するのに必要な金額:50</h1>
+			<button onclick="Main()">クリックしてください</button>
+			<button onclick="Main1()" id="tousi">投資する</button>
+			<h3 id="tousidekinai">投資できるお金の量を持っていません</h3>
+			<script type="text/javascript">
+				let n = 0;
+				let a = 1;
+				let b = 50;
+				let money = 1;
+				let score = document.getElementById("score");
+				let tousi = document.getElementById("tousi");
+				function Main(){
+					n += a;
+					score.innerHTML = `お金:${n}`;
+				}
+				function Main1(){
+					if (n >= b){
+						n -= b;
+						a += 1;
+						b += 50;
+						money += 1;
+						document.getElementById("oneclick").innerHTML = `1クリックごとに増えるお金の量:${money}`;
+						document.getElementById("hituyou").innerHTML = `投資するのに必要な金額:${b}`;
+						score.innerHTML = `お金:${n}`;
+					}
+				}
+				tousi.addEventListener("mouseover", function(){
+					if (n <= b){
+						document.getElementById("tousidekinai").style.visibility = "visible";
+					}
+				});
+				tousi.addEventListener("mouseleave", function(){
+					document.getElementById("tousidekinai").style.visibility = "hidden";
+				})
+			</script>
+		</body>
+</html>
